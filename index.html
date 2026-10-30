@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gustavo Mateus | Dev & Design UX/UI</title>
+    <title>Gustavo Mateus | Dev & Design UI/UX </title>
     
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -191,7 +191,7 @@
             color: var(--neon-green);
         }
 
-        /* Avatar Area - Substitua pelo seu avatar */
+        /* Avatar Area */
         .avatar-container {
             position: relative;
             display: flex;
@@ -199,34 +199,20 @@
             align-items: center;
         }
 
-        .avatar-placeholder {
+        /* Estilo da sua imagem */
+        .avatar-img {
             width: 350px;
             height: 450px;
-            background: #1a1a1a;
-            border: 2px dashed var(--neon-green);
+            object-fit: cover; /* Ajusta a imagem sem distorcer */
             border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 30px rgba(163, 255, 0, 0.2);
             position: relative;
             z-index: 2;
+            background-color: #1a1a1a; /* Fundo caso a imagem seja transparente */
         }
 
-        .avatar-placeholder i {
-            font-size: 4rem;
-            color: var(--neon-green);
-            margin-bottom: 15px;
-        }
-
-        .avatar-placeholder p {
-            font-family: var(--font-code);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Elementos Geométricos Flutuantes (Igual da Lohane) */
+        /* Elementos Geométricos Flutuantes */
         .geo-shape {
             position: absolute;
             border-radius: 50%;
@@ -457,12 +443,15 @@
                 </div>
             </div>
 
-            <!-- Área do Avatar (Substitua pelo seu) -->
+            <!-- Área do Avatar -->
             <div class="avatar-container">
-            <img src="minha-foto.png" alt="Gustavo Mateus" style="width: 350px; height: 450px; object-fit: cover; border-radius: 20px; border: 2px solid var(--neon-green); box-shadow: 0 0 30px rgba(163, 255, 0, 0.2); z-index: 2;">
+                <!-- IMPORTANTE: O arquivo da sua imagem deve se chamar "minha-foto.png" e estar na mesma pasta deste HTML -->
+                <img src="minha-foto.png" alt="Gustavo Mateus" class="avatar-img">
             </div>
+        </div>
+    </section>
 
-    <!-- SEÇÃO SOBRE (Texto grande igual da imagem) -->
+    <!-- SEÇÃO SOBRE -->
     <section class="section-block">
         <span class="section-subtitle">/* um pouco sobre mim */</span>
         <h2 class="section-title">QUEM ESTÁ POR TRÁS DO CÓDIGO.</h2>

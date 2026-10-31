@@ -1,3 +1,28 @@
+Adicionar uma seção de **linha do tempo (Trajetória / Jornada)** ao seu portfólio é uma excelente ideia! Ela traz bastante dinamismo visual, contextualiza sua evolução profissional e destaca sua experiência prática (estágio, cibersegurança e desenvolvimento full stack) de forma clara e organizada.
+
+Abaixo está a análise dos pontos fortes e o código HTML completo e pronto para uso, com os ajustes de estilos perfeitamente alinhados à identidade visual do seu site (paleta escura, fontes e detalhes em roxo/verde neon).
+
+---
+
+### O que achamos da inclusão dessa seção:
+
+* **Storytelling claro:** Permite que recrutadores e clientes entendam rapidamente onde você está hoje e como evoluiu ao longo dos anos.
+
+
+* **Destaque de experiências reais:** Dá evidência ao seu estágio atual em TI, aos estudos focados em Cibersegurança e ao seu progresso no Full Stack.
+
+
+* **Consistência visual:** O formato em linha do tempo com marcadores coloridos encaixa perfeitamente com a estética hacker/brutalista do seu site.
+
+
+
+---
+
+### Código HTML Completo com a Seção "Trajetória" Integrada
+
+Substitua todo o conteúdo do seu arquivo HTML pelo código abaixo. A seção foi adicionada entre a área **Sobre** e a seção de **Projetos**, com links atualizados na barra de navegação. Também ajustamos o gênero do texto da imagem para o masculino ("Estagiário de TI"), caso prefira ajustar.
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -192,6 +217,79 @@
         .section-subtitle { font-family: var(--font-code); color: var(--neon-purple); font-size: 0.9rem; margin-bottom: 15px; display: block; }
         .section-title { font-family: var(--font-head); font-size: 4rem; letter-spacing: 1px; color: #fff; text-transform: uppercase; line-height: 1; margin-bottom: 30px; }
         .about-text { color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; max-width: 700px; }
+
+        /* =========================================
+           SEÇÃO TRAJETÓRIA / LINHA DO TEMPO
+           ========================================= */
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .timeline-badge {
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 45px;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -37px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-green {
+            background-color: #00ff66;
+            box-shadow: 0 0 10px #00ff66;
+        }
+        .dot-purple {
+            background-color: var(--neon-purple);
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+        .dot-blue {
+            background-color: #00a2ff;
+            box-shadow: 0 0 10px #00a2ff;
+        }
+        .timeline-date {
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .date-green { color: #00ff66; }
+        .date-purple { color: #b000ff; }
+        .date-blue { color: #00a2ff; }
+
+        .timeline-content h3 {
+            font-family: var(--font-code);
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .timeline-content p {
+            font-family: var(--font-code);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-width: 650px;
+        }
 
         /* =========================================
            PROJETOS (AGORA EM ROXO ESCURO)
@@ -425,6 +523,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#trajetoria">Trajetória</a></li>
                 <li><a href="#projetos">Projetos</a></li>
                 <li><a href="#stack">Stack</a></li>
                 <li><a href="#curriculo">Currículo</a></li>
@@ -470,6 +569,47 @@
         <p class="about-text">
             Sou Gustavo Mateus, tenho 20 anos e atuo como Desenvolvedor Full Stack e UI/UX Designer. Minha jornada envolve a criação de sistemas web robustos, desde a prototipagem no Figma até a implementação de APIs seguras e interfaces responsivas. Estou sempre em busca de novos desafios que unam código limpo e design centrado no usuário.
         </p>
+    </section>
+
+    <!-- SEÇÃO TRAJETÓRIA -->
+    <section class="section-block" id="trajetoria">
+        <div class="timeline-header">
+            <span class="section-subtitle">/* trajetória */</span>
+            <span class="timeline-badge">ADS</span>
+        </div>
+        <h2 class="section-title">MINHA JORNADA ATÉ AQUI.</h2>
+
+        <div class="timeline">
+            <!-- Item 1 -->
+            <div class="timeline-item">
+                <div class="timeline-dot dot-green"></div>
+                <div class="timeline-date date-green">2026 — AGORA</div>
+                <div class="timeline-content">
+                    <h3>Estágio + faculdade na prática</h3>
+                    <p>Estagiário de TI enquanto curso ADS. O dia a dia ajudando no suporte técnico e auxiliando no hardware, software e sistemas no ambiente escolar.</p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="timeline-item">
+                <div class="timeline-dot dot-purple"></div>
+                <div class="timeline-date date-purple">2025 — 2026</div>
+                <div class="timeline-content">
+                    <h3>Mergulho em cibersegurança</h3>
+                    <p>Explorando a área de forma ampla: teoria (OWASP, CVEs, hardening), ferramentas (Wireshark, Nmap) e projetos próprios como Cerberus, AEGIS e Kraak.</p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="timeline-item">
+                <div class="timeline-dot dot-blue"></div>
+                <div class="timeline-date date-blue">2025</div>
+                <div class="timeline-content">
+                    <h3>Evolução em desenvolvimento full stack</h3>
+                    <p>Saindo de projetos simples pra sistemas completos com autenticação, APIs REST e banco de dados relacional. React, Node.js, Next.js, C# e .NET viraram ferramentas do dia a dia.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- PROJETOS -->
@@ -666,3 +806,5 @@
 
 </body>
 </html>
+
+```

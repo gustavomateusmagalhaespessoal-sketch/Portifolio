@@ -23,6 +23,19 @@
             --font-head: 'Anton', sans-serif;
             --font-body: 'Inter', sans-serif;
             --font-code: 'Fira Code', monospace;
+            --grid-color: rgba(255, 255, 255, 0.03);
+            --header-bg: rgba(10, 10, 10, 0.8);
+        }
+
+        /* Tema Claro */
+        body.light-mode {
+            --bg-dark: #f4f4f6;
+            --bg-card: #ffffff;
+            --purple-dark: #eae1f5;
+            --text-main: #111111;
+            --text-muted: #555555;
+            --grid-color: rgba(0, 0, 0, 0.04);
+            --header-bg: rgba(244, 244, 246, 0.85);
         }
 
         * {
@@ -38,9 +51,10 @@
             font-family: var(--font-body);
             overflow-x: hidden;
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 50px 50px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Efeito de Scanline */
@@ -54,16 +68,21 @@
             opacity: 0.3;
         }
 
+        body.light-mode .scanline {
+            opacity: 0.05;
+        }
+
         /* Navbar */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 5%;
+            padding: 15px 5%;
             z-index: 100;
-            background: rgba(10, 10, 10, 0.8);
+            background: var(--header-bg);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(176, 0, 255, 0.1);
+            transition: background 0.3s ease;
         }
 
         nav {
@@ -76,7 +95,7 @@
 
         .logo-terminal {
             font-family: var(--font-code);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
             color: var(--neon-purple);
             text-decoration: none;
@@ -87,18 +106,131 @@
         }
 
         .logo-terminal:hover { text-shadow: 0 0 10px var(--neon-purple); }
-        .logo-terminal span { color: #fff; font-size: 1.2rem; letter-spacing: 1px; }
+        .logo-terminal span { color: var(--text-main); font-size: 1.1rem; letter-spacing: 1px; }
 
-        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-right-area {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links { display: flex; gap: 20px; list-style: none; }
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
             font-family: var(--font-code);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: all 0.3s ease;
             text-transform: uppercase;
         }
         .nav-links a:hover { color: var(--neon-purple); }
+
+        /* =========================================
+           CONTROLES (TEMA, IDIOMA E OPEN TO WORK)
+           ========================================= */
+        .controls-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Botões Circulares (Tema e Idioma) */
+        .control-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid rgba(176, 0, 255, 0.4);
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            font-family: var(--font-code);
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            border-color: var(--neon-purple);
+            background-color: rgba(176, 0, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* Dropdown de Idiomas */
+        .lang-selector {
+            position: relative;
+        }
+
+        .lang-dropdown {
+            display: none;
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background-color: var(--bg-card);
+            border: 1px solid rgba(176, 0, 255, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            flex-direction: column;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .lang-selector.active .lang-dropdown {
+            display: flex;
+        }
+
+        .lang-dropdown button {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: var(--font-code);
+            font-size: 11px;
+            text-align: center;
+            transition: background 0.2s;
+        }
+
+        .lang-dropdown button:hover {
+            background-color: var(--neon-purple);
+            color: #fff;
+        }
+
+        /* Badge Open to Work */
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            border-radius: 50px;
+            border: 1px solid rgba(176, 0, 255, 0.4);
+            background-color: var(--bg-card);
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #00ff66;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #00ff66;
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 4px #00ff66; }
+            50% { box-shadow: 0 0 12px #00ff66; }
+            100% { box-shadow: 0 0 4px #00ff66; }
+        }
+
+        .status-text {
+            color: var(--text-main);
+            font-family: var(--font-code);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
 
         /* Hero Section */
         .hero {
@@ -169,7 +301,7 @@
             border-color: var(--neon-purple);
             box-shadow: 0 0 15px rgba(176, 0, 255, 0.3);
         }
-        .btn-outline { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.3); }
+        .btn-outline { background: transparent; color: var(--text-main); border: 1px solid rgba(176, 0, 255, 0.3); }
         .btn-outline:hover { border-color: var(--neon-purple); color: var(--neon-purple); }
 
         /* Avatar Area */
@@ -178,24 +310,24 @@
             width: 350px; height: 450px; object-fit: cover;
             border-radius: 20px; border: 2px solid var(--neon-purple);
             box-shadow: 0 0 30px rgba(176, 0, 255, 0.2);
-            position: relative; z-index: 2; background-color: #1a1a1a;
+            position: relative; z-index: 2; background-color: var(--bg-card);
         }
 
         /* Elementos Geométricos */
         .geo-shape { position: absolute; border-radius: 50%; z-index: 1; }
-        .shape-purple { width: 300px; height: 300px; background: var(--neon-purple); top: 10%; right: 10%; opacity: 0.8; }
-        .shape-dark { width: 150px; height: 150px; background: #222; bottom: 10%; right: 30%; border-radius: 20px; transform: rotate(45deg); }
-        .shape-ring { width: 120px; height: 120px; border: 15px solid #222; border-radius: 50%; bottom: 20%; right: 5%; }
+        .shape-purple { width: 300px; height: 300px; background: var(--neon-purple); top: 10%; right: 10%; opacity: 0.8; filter: blur(40px); }
+        .shape-dark { width: 150px; height: 150px; background: var(--text-muted); bottom: 10%; right: 30%; border-radius: 20px; transform: rotate(45deg); opacity: 0.1; }
+        .shape-ring { width: 120px; height: 120px; border: 15px solid var(--text-muted); opacity: 0.1; border-radius: 50%; bottom: 20%; right: 5%; }
 
         /* Seções Gerais */
         section.section-block { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
         .section-subtitle { font-family: var(--font-code); color: var(--neon-purple); font-size: 0.9rem; margin-bottom: 15px; display: block; }
-        .section-title { font-family: var(--font-head); font-size: 4rem; letter-spacing: 1px; color: #fff; text-transform: uppercase; line-height: 1; margin-bottom: 30px; }
+        .section-title { font-family: var(--font-head); font-size: 4rem; letter-spacing: 1px; color: var(--text-main); text-transform: uppercase; line-height: 1; margin-bottom: 30px; }
         .about-text { color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; max-width: 700px; }
 
         /* =========================================
-           SEÇÃO TRAJETÓRIA / LINHA DO TEMPO
-           ========================================= */
+            SEÇÃO TRAJETÓRIA / LINHA DO TEMPO
+            ========================================= */
         .timeline-header {
             display: flex;
             justify-content: space-between;
@@ -211,7 +343,7 @@
         .timeline {
             position: relative;
             padding-left: 30px;
-            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            border-left: 2px solid rgba(176, 0, 255, 0.2);
             margin-top: 20px;
         }
         .timeline-item {
@@ -229,18 +361,9 @@
             height: 12px;
             border-radius: 50%;
         }
-        .dot-green {
-            background-color: #00ff66;
-            box-shadow: 0 0 10px #00ff66;
-        }
-        .dot-purple {
-            background-color: var(--neon-purple);
-            box-shadow: 0 0 10px var(--neon-purple);
-        }
-        .dot-blue {
-            background-color: #00a2ff;
-            box-shadow: 0 0 10px #00a2ff;
-        }
+        .dot-green { background-color: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .dot-purple { background-color: var(--neon-purple); box-shadow: 0 0 10px var(--neon-purple); }
+        .dot-blue { background-color: #00a2ff; box-shadow: 0 0 10px #00a2ff; }
         .timeline-date {
             font-family: var(--font-code);
             font-size: 0.9rem;
@@ -254,7 +377,7 @@
         .timeline-content h3 {
             font-family: var(--font-code);
             font-size: 1.25rem;
-            color: #ffffff;
+            color: var(--text-main);
             margin-bottom: 12px;
             font-weight: 600;
         }
@@ -267,14 +390,14 @@
         }
 
         /* =========================================
-           PROJETOS (ROXO ESCURO)
-           ========================================= */
-        .projects-section { background-color: var(--purple-dark); color: #fff; padding: 80px 5%; width: 100%; border-top: 1px solid rgba(176, 0, 255, 0.2); border-bottom: 1px solid rgba(176, 0, 255, 0.2); }
+            PROJETOS (ROXO ESCURO)
+            ========================================= */
+        .projects-section { background-color: var(--purple-dark); color: var(--text-main); padding: 80px 5%; width: 100%; border-top: 1px solid rgba(176, 0, 255, 0.2); border-bottom: 1px solid rgba(176, 0, 255, 0.2); transition: background-color 0.3s ease; }
         .projects-container { max-width: 1200px; margin: 0 auto; }
         .projects-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
         .projects-title { font-family: var(--font-head); font-size: 4.5rem; line-height: 0.9; text-transform: uppercase; max-width: 800px; }
         .projects-count { font-family: var(--font-code); font-size: 0.9rem; margin-top: 10px; color: var(--text-muted); }
-        .projects-desc { font-family: var(--font-body); font-size: 1.1rem; max-width: 600px; line-height: 1.5; margin-bottom: 40px; color: #ccc; }
+        .projects-desc { font-family: var(--font-body); font-size: 1.1rem; max-width: 600px; line-height: 1.5; margin-bottom: 40px; color: var(--text-muted); }
 
         .filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 50px; }
         .filter-btn {
@@ -285,44 +408,44 @@
         .filter-btn.active, .filter-btn:hover { background: var(--neon-purple); color: #fff; }
 
         .projects-grid-brutal { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--neon-purple); border-left: 2px solid var(--neon-purple); }
-        .project-item { border-right: 2px solid var(--neon-purple); border-bottom: 2px solid var(--neon-purple); padding: 40px 30px; display: flex; flex-direction: column; transition: background 0.3s; }
+        .project-item { border-right: 2px solid var(--neon-purple); border-bottom: 2px solid var(--neon-purple); padding: 40px 30px; display: flex; flex-direction: column; transition: background 0.3s; background: var(--bg-card); }
         .project-item:hover { background: rgba(176, 0, 255, 0.05); }
         .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
-        .project-item h3 { font-family: var(--font-head); font-size: 2rem; letter-spacing: 1px; color: #fff; }
+        .project-item h3 { font-family: var(--font-head); font-size: 2rem; letter-spacing: 1px; color: var(--text-main); }
         .project-tag { background: var(--neon-purple); color: #fff; font-family: var(--font-code); font-size: 0.7rem; padding: 4px 10px; text-transform: uppercase; }
-        .project-tech { font-family: var(--font-code); font-size: 0.85rem; color: #aaa; margin-bottom: 20px; }
-        .project-text { font-family: var(--font-body); font-size: 1rem; line-height: 1.5; margin-bottom: 30px; flex-grow: 1; color: #ccc; }
+        .project-tech { font-family: var(--font-code); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+        .project-text { font-family: var(--font-body); font-size: 1rem; line-height: 1.5; margin-bottom: 30px; flex-grow: 1; color: var(--text-muted); }
         .project-link { font-family: var(--font-code); font-size: 0.9rem; color: var(--neon-purple); text-decoration: underline; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; margin-top: auto; }
         .project-link:hover { opacity: 0.7; }
 
         /* =========================================
-           STACK
-           ========================================= */
+            STACK
+            ========================================= */
         .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
         .stack-card { background: var(--bg-card); border: 1px solid rgba(176, 0, 255, 0.2); padding: 25px; border-left: 4px solid var(--neon-purple); transition: transform 0.3s; }
-        .stack-card:hover { transform: translateX(5px); background: #151515; box-shadow: 0 0 15px rgba(176, 0, 255, 0.1); }
+        .stack-card:hover { transform: translateX(5px); box-shadow: 0 0 15px rgba(176, 0, 255, 0.1); }
         .stack-card h3 { font-family: var(--font-code); color: var(--neon-purple); font-size: 1.1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
         .stack-list { list-style: none; font-family: var(--font-body); color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; }
         .stack-list li::before { content: "> "; color: var(--neon-purple); font-family: var(--font-code); }
 
         /* =========================================
-           CURRÍCULO
-           ========================================= */
-        .resume-box { background: linear-gradient(135deg, #111 0%, #0a0a0a 100%); border: 1px solid var(--neon-purple); padding: 50px; text-align: center; max-width: 800px; margin: 0 auto; position: relative; overflow: hidden; }
-        .resume-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(176, 0, 255, 0.03) 10px, rgba(176, 0, 255, 0.03) 20px); pointer-events: none; }
+            CURRÍCULO
+            ========================================= */
+        .resume-box { background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-dark) 100%); border: 1px solid var(--neon-purple); padding: 50px; text-align: center; max-width: 800px; margin: 0 auto; position: relative; overflow: hidden; }
         .resume-box i { font-size: 3rem; color: var(--neon-purple); margin-bottom: 20px; position: relative; z-index: 1; }
-        .resume-box h2 { font-family: var(--font-head); font-size: 3rem; margin-bottom: 15px; position: relative; z-index: 1; }
+        .resume-box h2 { font-family: var(--font-head); font-size: 3rem; margin-bottom: 15px; position: relative; z-index: 1; color: var(--text-main); }
         .resume-box p { color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem; position: relative; z-index: 1; }
 
         /* =========================================
-           ÁREA DE CONTATO (ROXO ESCURO)
-           ========================================= */
+            ÁREA DE CONTATO (ROXO ESCURO)
+            ========================================= */
         .contact-section {
             background-color: var(--purple-dark);
-            color: #fff;
+            color: var(--text-main);
             padding: 100px 5%;
             width: 100%;
             border-top: 1px solid rgba(176, 0, 255, 0.2);
+            transition: background-color 0.3s ease;
         }
 
         .contact-container {
@@ -350,7 +473,7 @@
             text-transform: uppercase;
             margin-bottom: 30px;
             grid-column: 1 / -1;
-            color: #fff;
+            color: var(--text-main);
         }
 
         .contact-info p {
@@ -359,7 +482,7 @@
             line-height: 1.6;
             margin-bottom: 40px;
             max-width: 400px;
-            color: #ccc;
+            color: var(--text-muted);
         }
 
         .contact-links {
@@ -369,7 +492,7 @@
         }
 
         .contact-links a {
-            color: #fff;
+            color: var(--text-main);
             text-decoration: none;
             font-family: var(--font-code);
             font-size: 1rem;
@@ -406,11 +529,11 @@
             width: 100%;
             background: transparent;
             border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 1px solid rgba(176, 0, 255, 0.3);
             padding: 10px 0;
             font-family: var(--font-body);
             font-size: 1.1rem;
-            color: #fff;
+            color: var(--text-main);
             outline: none;
             transition: border-color 0.3s;
         }
@@ -422,33 +545,13 @@
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.2);
+            color: var(--text-muted);
+            opacity: 0.5;
         }
 
         .form-group textarea {
             resize: vertical;
             min-height: 80px;
-        }
-
-        .btn-submit {
-            align-self: flex-start;
-            background: transparent;
-            border: 2px solid var(--neon-purple);
-            color: var(--neon-purple);
-            padding: 15px 40px;
-            font-family: var(--font-code);
-            font-size: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-
-        .btn-submit:hover {
-            background: var(--neon-purple);
-            color: #fff;
-            box-shadow: 0 0 15px rgba(176, 0, 255, 0.3);
         }
 
         /* Footer */
@@ -458,8 +561,9 @@
             color: var(--text-muted);
             font-family: var(--font-code);
             font-size: 0.8rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(176, 0, 255, 0.1);
             background: var(--bg-dark);
+            transition: background 0.3s;
         }
 
         /* Responsivo */
@@ -496,14 +600,43 @@
             <a href="#" class="logo-terminal">
                 <i class="fa-solid fa-terminal"></i> <span>GUSTAVO.DEV</span>
             </a>
-            <ul class="nav-links">
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#trajetoria">Trajetória</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#stack">Stack</a></li>
-                <li><a href="#curriculo">Currículo</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
+            
+            <div class="nav-right-area">
+                <ul class="nav-links">
+                    <li><a href="#sobre" data-i18n="nav-about">Sobre</a></li>
+                    <li><a href="#trajetoria" data-i18n="nav-journey">Trajetória</a></li>
+                    <li><a href="#projetos" data-i18n="nav-projects">Projetos</a></li>
+                    <li><a href="#stack" data-i18n="nav-stack">Stack</a></li>
+                    <li><a href="#curriculo" data-i18n="nav-resume">Currículo</a></li>
+                    <li><a href="#contato" data-i18n="nav-contact">Contato</a></li>
+                </ul>
+
+                <!-- Controles: Tema, Idioma e Open to Work -->
+                <div class="controls-container">
+                    <!-- Botão de Tema (Claro / Escuro) -->
+                    <button id="theme-toggle" class="control-btn" aria-label="Alternar Tema" title="Alternar Modo Claro/Escuro">
+                        <i class="fa-solid fa-sun" id="theme-icon"></i>
+                    </button>
+
+                    <!-- Seletor de Idiomas (PT, EN, ES) -->
+                    <div class="lang-selector" id="lang-selector">
+                        <button id="lang-btn" class="control-btn" aria-label="Selecionar Idioma" title="Mudar Idioma">
+                            <span id="current-lang">PT</span>
+                        </button>
+                        <div class="lang-dropdown">
+                            <button onclick="setLanguage('pt')">PT</button>
+                            <button onclick="setLanguage('en')">EN</button>
+                            <button onclick="setLanguage('es')">ES</button>
+                        </div>
+                    </div>
+
+                    <!-- Status Badge Open to Work -->
+                    <div class="status-badge" title="Disponível para novas oportunidades">
+                        <span class="status-dot"></span>
+                        <span class="status-text">OPEN TO WORK</span>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -516,22 +649,21 @@
         <div class="hero-container">
             <div class="hero-content">
                 <span class="hero-tag">FULL STACK • UI/UX</span>
-                <h1 class="hero-title">
+                <h1 class="hero-title" data-i18n="hero-main-title">
                     DESENVOLVEDOR<br>
                     <span class="highlight">FULL STACK</span><br>
                     & DESIGN
                 </h1>
-                <p class="hero-desc">
+                <p class="hero-desc" data-i18n="hero-desc">
                     Interfaces, APIs e ferramentas de segurança — projetadas com foco em usabilidade, performance e qualidade design.
                 </p>
                 <div class="hero-actions">
-                    <a href="#projetos" class="btn btn-primary">Ver Projetos →</a>
-                    <a href="#contato" class="btn btn-outline">>_ Contato</a>
+                    <a href="#projetos" class="btn btn-primary" data-i18n="btn-projects">Ver Projetos →</a>
+                    <a href="#contato" class="btn btn-outline" data-i18n="btn-contact">>_ Contato</a>
                 </div>
             </div>
 
             <div class="avatar-container">
-                <!-- Lembre-se de colocar a imagem na mesma pasta -->
                 <img src="minha-foto.png" alt="Gustavo Mateus" class="avatar-img">
             </div>
         </div>
@@ -540,8 +672,8 @@
     <!-- SEÇÃO SOBRE -->
     <section class="section-block">
         <span class="section-subtitle">/* um pouco sobre mim */</span>
-        <h2 class="section-title">QUEM ESTÁ POR TRÁS DO CÓDIGO.</h2>
-        <p class="about-text">
+        <h2 class="section-title" data-i18n="about-title">QUEM ESTÁ POR TRÁS DO CÓDIGO.</h2>
+        <p class="about-text" data-i18n="about-desc">
             Sou Gustavo Mateus, tenho 20 anos e atuo como Desenvolvedor Full Stack e UI/UX Designer. Minha jornada envolve a criação de sistemas web robustos, desde a prototipagem no Figma até a implementação de APIs seguras e interfaces responsivas. Estou sempre em busca de novos desafios que unam código limpo e design centrado no usuário.
         </p>
     </section>
@@ -552,36 +684,33 @@
             <span class="section-subtitle">/* trajetória */</span>
             <span class="timeline-badge">ADS</span>
         </div>
-        <h2 class="section-title">MINHA JORNADA ATÉ AQUI.</h2>
+        <h2 class="section-title" data-i18n="journey-title">MINHA JORNADA ATÉ AQUI.</h2>
 
         <div class="timeline">
-            <!-- Item 1 -->
             <div class="timeline-item">
                 <div class="timeline-dot dot-green"></div>
                 <div class="timeline-date date-green">2026 — AGORA</div>
                 <div class="timeline-content">
-                    <h3>Final do Curso</h3>
-                    <p>Finalizei o curso ADS e continuo fazendo a prática todos os dias. O dia a dia ajudando no suporte técnico e auxiliando no hardware, software e sistemas no ambiente escolar.</p>
+                    <h3 data-i18n="j1-title">Final do Curso</h3>
+                    <p data-i18n="j1-desc">Finalizei o curso ADS e continuo fazendo a prática todos os dias. O dia a dia ajudando no suporte técnico e auxiliando no hardware, software e sistemas no ambiente escolar.</p>
                 </div>
             </div>
 
-            <!-- Item 2 -->
             <div class="timeline-item">
                 <div class="timeline-dot dot-purple"></div>
                 <div class="timeline-date date-purple">2025 — 2026</div>
                 <div class="timeline-content">
-                    <h3>Mergulho em UI/UX & Prototipagem</h3>
-                    <p>Foco na experiência do usuário e design de interfaces: criação de Design Systems, protótipos navegáveis de alta fidelidade no Figma, testes de usabilidade e arquitetura de informação.</p>
+                    <h3 data-i18n="j2-title">Mergulho em UI/UX & Prototipagem</h3>
+                    <p data-i18n="j2-desc">Foco na experiência do usuário e design de interfaces: criação de Design Systems, protótipos navegáveis de alta fidelidade no Figma, testes de usabilidade e arquitetura de informação.</p>
                 </div>
             </div>
 
-            <!-- Item 3 -->
             <div class="timeline-item">
                 <div class="timeline-dot dot-blue"></div>
                 <div class="timeline-date date-blue">2025</div>
                 <div class="timeline-content">
-                    <h3>Evolução em desenvolvimento full stack</h3>
-                    <p>Saindo de projetos simples pra sistemas completos com autenticação, APIs REST e banco de dados relacional. React, Node.js, Next.js, C# e .NET viraram ferramentas do dia a dia.</p>
+                    <h3 data-i18n="j3-title">Evolução em desenvolvimento full stack</h3>
+                    <p data-i18n="j3-desc">Saindo de projetos simples pra sistemas completos com autenticação, APIs REST e banco de dados relacional. React, Node.js, Next.js, C# e .NET viraram ferramentas do dia a dia.</p>
                 </div>
             </div>
         </div>
@@ -591,11 +720,11 @@
     <section class="projects-section" id="projetos">
         <div class="projects-container">
             <div class="projects-header">
-                <h2 class="projects-title">ONDE CÓDIGO, DESIGN E INOVAÇÃO SE ENCONTRAM.</h2>
+                <h2 class="projects-title" data-i18n="proj-main-title">ONDE CÓDIGO, DESIGN E INOVAÇÃO SE ENCONTRAM.</h2>
                 <span class="projects-count">6 no total</span>
             </div>
             
-            <p class="projects-desc">
+            <p class="projects-desc" data-i18n="proj-main-desc">
                 Uma seleção de projetos que unem desenvolvimento back-end robusto, interfaces modernas e foco na experiência do usuário.
             </p>
 
@@ -609,7 +738,6 @@
             </div>
 
             <div class="projects-grid-brutal">
-                <!-- Projeto 1 -->
                 <div class="project-item">
                     <div class="project-top"><h3>EcoSystem API</h3><span class="project-tag">Back-End</span></div>
                     <div class="project-tech">C# · .NET Core · SQL Server</div>
@@ -617,7 +745,6 @@
                     <a href="#" class="project-link">Ver no GitHub ↗</a>
                 </div>
 
-                <!-- Projeto 2 -->
                 <div class="project-item">
                     <div class="project-top"><h3>FinanDash</h3><span class="project-tag">Data</span></div>
                     <div class="project-tech">Python · Pandas · Streamlit</div>
@@ -625,7 +752,6 @@
                     <a href="#" class="project-link">Ver no GitHub ↗</a>
                 </div>
 
-                <!-- Projeto 3 -->
                 <div class="project-item">
                     <div class="project-top"><h3>VibeUI Kit</h3><span class="project-tag">Design</span></div>
                     <div class="project-tech">Figma · UI/UX · Design System</div>
@@ -633,7 +759,6 @@
                     <a href="#" class="project-link">Ver no GitHub ↗</a>
                 </div>
 
-                <!-- Projeto 4 -->
                 <div class="project-item">
                     <div class="project-top"><h3>TaskFlow</h3><span class="project-tag">Web</span></div>
                     <div class="project-tech">React · TypeScript · Tailwind</div>
@@ -641,7 +766,6 @@
                     <a href="#" class="project-link">Ver no GitHub ↗</a>
                 </div>
 
-                <!-- Projeto 5 -->
                 <div class="project-item">
                     <div class="project-top"><h3>PharmaStock</h3><span class="project-tag">Web</span></div>
                     <div class="project-tech">PHP · Laravel · MySQL</div>
@@ -649,7 +773,6 @@
                     <a href="#" class="project-link">Ver no GitHub ↗</a>
                 </div>
 
-                <!-- Projeto 6 -->
                 <div class="project-item">
                     <div class="project-top"><h3>ConnectMobile</h3><span class="project-tag">Mobile</span></div>
                     <div class="project-tech">Java · Android Studio · SQLite</div>
@@ -663,7 +786,7 @@
     <!-- STACK -->
     <section class="section-block" id="stack">
         <span class="section-subtitle">/* ferramentas e tecnologias */</span>
-        <h2 class="section-title">MINHA STACK</h2>
+        <h2 class="section-title" data-i18n="stack-title">MINHA STACK</h2>
         
         <div class="stack-grid">
             <div class="stack-card">
@@ -712,10 +835,10 @@
     <section class="section-block" id="curriculo">
         <div class="resume-box">
             <i class="fa-solid fa-file-pdf"></i>
-            <h2>MEU CURRÍCULO</h2>
-            <p>Baixe a versão em PDF para ver meu histórico completo, formação acadêmica e experiências detalhadas.</p>
+            <h2 data-i18n="resume-box-title">MEU CURRÍCULO</h2>
+            <p data-i18n="resume-box-desc">Baixe a versão em PDF para ver meu histórico completo, formação acadêmica e experiências detalhadas.</p>
             <a href="#" target="_blank" class="btn btn-primary">
-                <i class="fa-solid fa-download"></i> Baixar PDF
+                <i class="fa-solid fa-download"></i> <span data-i18n="resume-btn">Baixar PDF</span>
             </a>
         </div>
     </section>
@@ -729,10 +852,10 @@
                 <span>fale comigo</span>
             </div>
 
-            <h2 class="contact-title">VAMOS TRABALHAR JUNTOS?</h2>
+            <h2 class="contact-title" data-i18n="contact-main-title">VAMOS TRABALHAR JUNTOS?</h2>
 
             <div class="contact-info">
-                <p>Tem um projeto em mente ou quer bater um papo sobre tecnologia e segurança? Me manda uma mensagem, respondo o mais breve possível.</p>
+                <p data-i18n="contact-desc">Tem um projeto em mente ou quer bater um papo sobre tecnologia e segurança? Me manda uma mensagem, respondo o mais breve possível.</p>
                 
                 <div class="contact-links">
                     <a href="mailto:gustavomateusmagalhaespessoal@gmail.com">
@@ -750,34 +873,182 @@
             <!-- Formulário -->
             <form class="contact-form" action="#" method="POST">
                 <div class="form-group">
-                    <label for="nome">nome</label>
+                    <label for="nome" data-i18n="form-name">nome</label>
                     <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">email</label>
+                    <label for="email" data-i18n="form-email">email</label>
                     <input type="email" id="email" name="email" placeholder="seu@email.com" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="assunto">assunto</label>
-                    <input type="text" id="assunto" name="assunto" placeholder="Assunto" required>
+                    <label for="assunto" data-i18n="form-subject">assunto</label>
+                    <input type="text" id="assunto" name="assunto" placeholder="Assunto da mensagem" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="mensagem">mensagem</label>
+                    <label for="mensagem" data-i18n="form-message">mensagem</label>
                     <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem..." required></textarea>
                 </div>
 
-                <button type="submit" class="btn-submit">Enviar Mensagem</button>
+                <button type="submit" class="btn-submit" data-i18n="form-submit">> enviar_mensagem</button>
             </form>
-
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>© 2026 Gustavo Mateus Magalhães — Desenvolvido com HTML, CSS</p>
+        <p>© 2026 Gustavo Mateus. Todos os direitos reservados.</p>
     </footer>
 
+    <!-- SCRIPT DE TEMA E IDIOMA -->
+    <script>
+        // Alternar Tema (Claro / Escuro)
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+
+        // Abrir/Fechar Dropdown de Idioma
+        const langSelector = document.getElementById('lang-selector');
+        const langBtn = document.getElementById('lang-btn');
+
+        langBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langSelector.classList.toggle('active');
+        });
+
+        window.addEventListener('click', () => {
+            langSelector.classList.remove('active');
+        });
+
+        // Dicionário de Traduções (PT, EN, ES)
+        const translations = {
+            pt: {
+                "nav-about": "Sobre",
+                "nav-journey": "Trajetória",
+                "nav-projects": "Projetos",
+                "nav-stack": "Stack",
+                "nav-resume": "Currículo",
+                "nav-contact": "Contato",
+                "hero-main-title": "DESENVOLVEDOR<br><span class='highlight'>FULL STACK</span><br>& DESIGN",
+                "hero-desc": "Interfaces, APIs e ferramentas de segurança — projetadas com foco em usabilidade, performance e qualidade design.",
+                "btn-projects": "Ver Projetos →",
+                "btn-contact": ">_ Contato",
+                "about-title": "QUEM ESTÁ POR TRÁS DO CÓDIGO.",
+                "about-desc": "Sou Gustavo Mateus, tenho 20 anos e atuo como Desenvolvedor Full Stack e UI/UX Designer. Minha jornada envolve a criação de sistemas web robustos, desde a prototipagem no Figma até a implementação de APIs seguras e interfaces responsivas. Estou sempre em busca de novos desafios que unam código limpo e design centrado no usuário.",
+                "journey-title": "MINHA JORNADA ATÉ AQUI.",
+                "j1-title": "Final do Curso",
+                "j1-desc": "Finalizei o curso ADS e continuo fazendo a prática todos os dias. O dia a dia ajudando no suporte técnico e auxiliando no hardware, software e sistemas no ambiente escolar.",
+                "j2-title": "Mergulho em UI/UX & Prototipagem",
+                "j2-desc": "Foco na experiência do usuário e design de interfaces: criação de Design Systems, protótipos navegáveis de alta fidelidade no Figma, testes de usabilidade e arquitetura de informação.",
+                "j3-title": "Evolução em desenvolvimento full stack",
+                "j3-desc": "Saindo de projetos simples pra sistemas completos com autenticação, APIs REST e banco de dados relacional. React, Node.js, Next.js, C# e .NET viraram ferramentas do dia a dia.",
+                "proj-main-title": "ONDE CÓDIGO, DESIGN E INOVAÇÃO SE ENCONTRAM.",
+                "proj-main-desc": "Uma seleção de projetos que unem desenvolvimento back-end robusto, interfaces modernas e foco na experiência do usuário.",
+                "stack-title": "MINHA STACK",
+                "resume-box-title": "MEU CURRÍCULO",
+                "resume-box-desc": "Baixe a versão em PDF para ver meu histórico completo, formação acadêmica e experiências detalhadas.",
+                "resume-btn": "Baixar PDF",
+                "contact-main-title": "VAMOS TRABALHAR JUNTOS?",
+                "contact-desc": "Tem um projeto em mente ou quer bater um papo sobre tecnologia e segurança? Me manda uma mensagem, respondo o mais breve possível.",
+                "form-name": "nome",
+                "form-email": "email",
+                "form-subject": "assunto",
+                "form-message": "mensagem",
+                "form-submit": "> enviar_mensagem"
+            },
+            en: {
+                "nav-about": "About",
+                "nav-journey": "Journey",
+                "nav-projects": "Projects",
+                "nav-stack": "Stack",
+                "nav-resume": "Resume",
+                "nav-contact": "Contact",
+                "hero-main-title": "FULL STACK<br><span class='highlight'>DEVELOPER</span><br>& UI/UX DESIGN",
+                "hero-desc": "Interfaces, APIs, and security tools — designed with a focus on usability, performance, and design quality.",
+                "btn-projects": "View Projects →",
+                "btn-contact": ">_ Contact",
+                "about-title": "WHO IS BEHIND THE CODE.",
+                "about-desc": "I am Gustavo Mateus, 20 years old, working as a Full Stack Developer and UI/UX Designer. My journey involves creating robust web systems, from Figma prototyping to implementing secure APIs and responsive interfaces. I am always looking for new challenges combining clean code and user-centered design.",
+                "journey-title": "MY JOURNEY SO FAR.",
+                "j1-title": "Course Completion",
+                "j1-desc": "Completed my Systems Analysis and Development degree and keep practicing every day. Assisting with technical support, hardware, software, and systems in a school environment.",
+                "j2-title": "UI/UX & Prototyping Deep Dive",
+                "j2-desc": "Focus on user experience and interface design: creating Design Systems, high-fidelity clickable Figma prototypes, usability tests, and information architecture.",
+                "j3-title": "Full Stack Evolution",
+                "j3-desc": "Moving from simple projects to full systems with authentication, REST APIs, and relational databases. React, Node.js, Next.js, C#, and .NET became daily tools.",
+                "proj-main-title": "WHERE CODE, DESIGN AND INNOVATION MEET.",
+                "proj-main-desc": "A curated selection of projects combining robust back-end development, modern interfaces, and user experience focus.",
+                "stack-title": "MY STACK",
+                "resume-box-title": "MY RESUME",
+                "resume-box-desc": "Download the PDF version to see my complete background, education, and detailed work experience.",
+                "resume-btn": "Download PDF",
+                "contact-main-title": "LET'S WORK TOGETHER?",
+                "contact-desc": "Have a project in mind or want to chat about tech and security? Send me a message, I'll reply as soon as possible.",
+                "form-name": "name",
+                "form-email": "email",
+                "form-subject": "subject",
+                "form-message": "message",
+                "form-submit": "> send_message"
+            },
+            es: {
+                "nav-about": "Sobre mí",
+                "nav-journey": "Trayectoria",
+                "nav-projects": "Proyectos",
+                "nav-stack": "Stack",
+                "nav-resume": "Currículum",
+                "nav-contact": "Contacto",
+                "hero-main-title": "DESARROLLADOR<br><span class='highlight'>FULL STACK</span><br>& DISEÑO",
+                "hero-desc": "Interfaces, APIs y herramientas de seguridad — diseñadas con enfoque en usabilidad, rendimiento y calidad visual.",
+                "btn-projects": "Ver Proyectos →",
+                "btn-contact": ">_ Contacto",
+                "about-title": "QUIÉN ESTÁ DETRÁS DEL CÓDIGO.",
+                "about-desc": "Soy Gustavo Mateus, tengo 20 años y trabajo como Desarrollador Full Stack y Diseñador UI/UX. Mi trayectoria implica crear sistemas web robustos, desde prototipos en Figma hasta implementar APIs seguras e interfaces responsivas.",
+                "journey-title": "MI TRAYECTORIA HASTA AQUÍ.",
+                "j1-title": "Fin de la Carrera",
+                "j1-desc": "Finalicé la carrera de ADS y sigo practicando todos los días. Apoyo técnico cotidiano en hardware, software y sistemas en el ámbito escolar.",
+                "j2-title": "Inmersión en UI/UX & Prototipado",
+                "j2-desc": "Enfoque en experiencia de usuario y diseño de interfaces: creación de Design Systems, prototipos interactivos en alta fidelidad en Figma.",
+                "j3-title": "Evolución en Desarrollo Full Stack",
+                "j3-desc": "Pasando de proyectos simples a sistemas completos con autenticación, APIs REST y bases de datos relacionales. React, Node.js, C# y .NET.",
+                "proj-main-title": "DONDE EL CÓDIGO, EL DISEÑO Y LA INNOVACIÓN SE ENCUENTRAN.",
+                "proj-main-desc": "Una selección de proyectos que combinan desarrollo back-end robusto, interfaces modernas y enfoque en la experiencia de usuario.",
+                "stack-title": "MI STACK",
+                "resume-box-title": "MI CURRÍCULUM",
+                "resume-box-desc": "Descarga la versión en PDF para ver mi historial completo, formación académica y experiencias detalladas.",
+                "resume-btn": "Descargar PDF",
+                "contact-main-title": "¿TRABAJAMOS JUNTOS?",
+                "contact-desc": "¿Tienes un proyecto en mente o quieres charlar sobre tecnología y seguridad? Envíame un mensaje, respondo lo antes posible.",
+                "form-name": "nombre",
+                "form-email": "correo",
+                "form-subject": "asunto",
+                "form-message": "mensaje",
+                "form-submit": "> enviar_mensaje"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.getElementById('current-lang').innerText = lang.toUpperCase();
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            langSelector.classList.remove('active');
+        }
+    </script>
 </body>
 </html>

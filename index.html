@@ -68,9 +68,7 @@
             opacity: 0.3;
         }
 
-        body.light-mode .scanline {
-            opacity: 0.05;
-        }
+        body.light-mode .scanline { opacity: 0.05; }
 
         /* Navbar */
         header {
@@ -134,7 +132,6 @@
             gap: 10px;
         }
 
-        /* Botões Circulares (Tema e Idioma) */
         .control-btn {
             width: 38px;
             height: 38px;
@@ -325,73 +322,24 @@
         .section-title { font-family: var(--font-head); font-size: 4rem; letter-spacing: 1px; color: var(--text-main); text-transform: uppercase; line-height: 1; margin-bottom: 30px; }
         .about-text { color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; max-width: 700px; }
 
-        /* =========================================
-            SEÇÃO TRAJETÓRIA / LINHA DO TEMPO
-            ========================================= */
-        .timeline-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-        .timeline-badge {
-            font-family: var(--font-code);
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-            border-left: 2px solid rgba(176, 0, 255, 0.2);
-            margin-top: 20px;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 45px;
-        }
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-        .timeline-dot {
-            position: absolute;
-            left: -37px;
-            top: 4px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
+        /* Trajetória */
+        .timeline-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .timeline-badge { font-family: var(--font-code); font-size: 0.9rem; color: var(--text-muted); letter-spacing: 1px; }
+        .timeline { position: relative; padding-left: 30px; border-left: 2px solid rgba(176, 0, 255, 0.2); margin-top: 20px; }
+        .timeline-item { position: relative; margin-bottom: 45px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-dot { position: absolute; left: -37px; top: 4px; width: 12px; height: 12px; border-radius: 50%; }
         .dot-green { background-color: #00ff66; box-shadow: 0 0 10px #00ff66; }
         .dot-purple { background-color: var(--neon-purple); box-shadow: 0 0 10px var(--neon-purple); }
         .dot-blue { background-color: #00a2ff; box-shadow: 0 0 10px #00a2ff; }
-        .timeline-date {
-            font-family: var(--font-code);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
+        .timeline-date { font-family: var(--font-code); font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; }
         .date-green { color: #00ff66; }
         .date-purple { color: #b000ff; }
         .date-blue { color: #00a2ff; }
+        .timeline-content h3 { font-family: var(--font-code); font-size: 1.25rem; color: var(--text-main); margin-bottom: 12px; font-weight: 600; }
+        .timeline-content p { font-family: var(--font-code); color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; max-width: 650px; }
 
-        .timeline-content h3 {
-            font-family: var(--font-code);
-            font-size: 1.25rem;
-            color: var(--text-main);
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-        .timeline-content p {
-            font-family: var(--font-code);
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            max-width: 650px;
-        }
-
-        /* =========================================
-            PROJETOS (ROXO ESCURO)
-            ========================================= */
+        /* Projetos */
         .projects-section { background-color: var(--purple-dark); color: var(--text-main); padding: 80px 5%; width: 100%; border-top: 1px solid rgba(176, 0, 255, 0.2); border-bottom: 1px solid rgba(176, 0, 255, 0.2); transition: background-color 0.3s ease; }
         .projects-container { max-width: 1200px; margin: 0 auto; }
         .projects-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
@@ -418,9 +366,7 @@
         .project-link { font-family: var(--font-code); font-size: 0.9rem; color: var(--neon-purple); text-decoration: underline; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; margin-top: auto; }
         .project-link:hover { opacity: 0.7; }
 
-        /* =========================================
-            STACK
-            ========================================= */
+        /* Stack */
         .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
         .stack-card { background: var(--bg-card); border: 1px solid rgba(176, 0, 255, 0.2); padding: 25px; border-left: 4px solid var(--neon-purple); transition: transform 0.3s; }
         .stack-card:hover { transform: translateX(5px); box-shadow: 0 0 15px rgba(176, 0, 255, 0.1); }
@@ -428,17 +374,13 @@
         .stack-list { list-style: none; font-family: var(--font-body); color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; }
         .stack-list li::before { content: "> "; color: var(--neon-purple); font-family: var(--font-code); }
 
-        /* =========================================
-            CURRÍCULO
-            ========================================= */
+        /* Currículo */
         .resume-box { background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-dark) 100%); border: 1px solid var(--neon-purple); padding: 50px; text-align: center; max-width: 800px; margin: 0 auto; position: relative; overflow: hidden; }
         .resume-box i { font-size: 3rem; color: var(--neon-purple); margin-bottom: 20px; position: relative; z-index: 1; }
         .resume-box h2 { font-family: var(--font-head); font-size: 3rem; margin-bottom: 15px; position: relative; z-index: 1; color: var(--text-main); }
         .resume-box p { color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem; position: relative; z-index: 1; }
 
-        /* =========================================
-            ÁREA DE CONTATO (ROXO ESCURO)
-            ========================================= */
+        /* Contato */
         .contact-section {
             background-color: var(--purple-dark);
             color: var(--text-main);
@@ -485,12 +427,7 @@
             color: var(--text-muted);
         }
 
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
+        .contact-links { display: flex; flex-direction: column; gap: 20px; }
         .contact-links a {
             color: var(--text-main);
             text-decoration: none;
@@ -501,29 +438,11 @@
             gap: 10px;
             transition: color 0.3s;
         }
-
         .contact-links a:hover { color: var(--neon-purple); }
 
-        /* Formulário Brutalista */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .form-group label {
-            font-family: var(--font-code);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: lowercase;
-        }
-
+        .contact-form { display: flex; flex-direction: column; gap: 30px; }
+        .form-group { display: flex; flex-direction: column; gap: 10px; }
+        .form-group label { font-family: var(--font-code); font-size: 0.85rem; color: var(--text-muted); text-transform: lowercase; }
         .form-group input,
         .form-group textarea {
             width: 100%;
@@ -537,22 +456,25 @@
             outline: none;
             transition: border-color 0.3s;
         }
+        .form-group input:focus, .form-group textarea:focus { border-bottom: 1px solid var(--neon-purple); }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); opacity: 0.5; }
+        .form-group textarea { resize: vertical; min-height: 80px; }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-bottom: 1px solid var(--neon-purple);
+        .btn-submit {
+            align-self: flex-start;
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: var(--neon-purple);
+            padding: 15px 40px;
+            font-family: var(--font-code);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
         }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--text-muted);
-            opacity: 0.5;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
+        .btn-submit:hover { background: var(--neon-purple); color: #fff; box-shadow: 0 0 15px rgba(176, 0, 255, 0.3); }
 
         /* Footer */
         footer {
@@ -613,12 +535,10 @@
 
                 <!-- Controles: Tema, Idioma e Open to Work -->
                 <div class="controls-container">
-                    <!-- Botão de Tema (Claro / Escuro) -->
                     <button id="theme-toggle" class="control-btn" aria-label="Alternar Tema" title="Alternar Modo Claro/Escuro">
                         <i class="fa-solid fa-sun" id="theme-icon"></i>
                     </button>
 
-                    <!-- Seletor de Idiomas (PT, EN, ES) -->
                     <div class="lang-selector" id="lang-selector">
                         <button id="lang-btn" class="control-btn" aria-label="Selecionar Idioma" title="Mudar Idioma">
                             <span id="current-lang">PT</span>
@@ -630,7 +550,6 @@
                         </div>
                     </div>
 
-                    <!-- Status Badge Open to Work -->
                     <div class="status-badge" title="Disponível para novas oportunidades">
                         <span class="status-dot"></span>
                         <span class="status-text">OPEN TO WORK</span>
@@ -904,7 +823,6 @@
 
     <!-- SCRIPT DE TEMA E IDIOMA -->
     <script>
-        // Alternar Tema (Claro / Escuro)
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         
@@ -919,7 +837,6 @@
             }
         });
 
-        // Abrir/Fechar Dropdown de Idioma
         const langSelector = document.getElementById('lang-selector');
         const langBtn = document.getElementById('lang-btn');
 
@@ -932,7 +849,6 @@
             langSelector.classList.remove('active');
         });
 
-        // Dicionário de Traduções (PT, EN, ES)
         const translations = {
             pt: {
                 "nav-about": "Sobre",

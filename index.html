@@ -380,6 +380,34 @@
         .resume-box h2 { font-family: var(--font-head); font-size: 3rem; margin-bottom: 15px; position: relative; z-index: 1; color: var(--text-main); }
         .resume-box p { color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem; position: relative; z-index: 1; }
 
+        /* Estilo do Botão de Baixar Currículo (Corrigido) */
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--neon-purple);
+            border: 2px solid var(--neon-purple);
+            color: #fff;
+            padding: 15px 40px;
+            font-family: var(--font-code);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(176, 0, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        .btn-download:hover {
+            background: transparent;
+            color: var(--neon-purple);
+            box-shadow: 0 0 15px rgba(176, 0, 255, 0.4);
+        }
+
         /* Contato */
         .contact-section {
             background-color: var(--purple-dark);
@@ -752,16 +780,16 @@
 
     <!-- CURRÍCULO -->
     <section class="section-block" id="curriculo">
-    <div class="resume-box">
-        <i class="fa-solid fa-file-pdf"></i>
-        <h2 data-i18n="resume-box-title">MEU CURRÍCULO</h2>
-        <p data-i18n="resume-box-desc">Baixe a versão em PDF para ver meu histórico completo, formação acadêmica e experiências detalhadas.</p>
-        
-        <a href="curriculo.pdf" download="Curriculo_GustavoMateusMagalhães.pdf" class="btn-download">
-            <i class="fa-solid fa-download"></i> <span data-i18n="resume-btn">Baixar PDF</span>
-        </a>
-    </div>
-</section>
+        <div class="resume-box">
+            <i class="fa-solid fa-file-pdf"></i>
+            <h2 data-i18n="resume-box-title">MEU CURRÍCULO</h2>
+            <p data-i18n="resume-box-desc">Baixe a versão em PDF para ver meu histórico completo, formação acadêmica e experiências detalhadas.</p>
+            
+            <a href="curriculo.pdf" download="Curriculo_GustavoMateusMagalhães.pdf" class="btn-download">
+                <i class="fa-solid fa-download"></i> <span data-i18n="resume-btn">Baixar PDF</span>
+            </a>
+        </div>
+    </section>
 
     <!-- ÁREA DE CONTATO -->
     <section class="contact-section" id="contato">
@@ -931,7 +959,7 @@
                 "btn-projects": "Ver Proyectos →",
                 "btn-contact": ">_ Contacto",
                 "about-title": "QUIÉN ESTÁ DETRÁS DEL CÓDIGO.",
-                "about-desc": "Soy Gustavo Mateus, tengo 20 años y trabajo como Desarrollador Full Stack y Diseñador UI/UX. Mi trayectoria implica crear sistemas web robustos, desde prototipos en Figma hasta implementar APIs seguras e interfaces responsivas.",
+                "about-desc": "Soy Gustavo Mateus, tengo 20 años e trabajo como Desarrollador Full Stack y Diseñador UI/UX. Mi trayectoria implica crear sistemas web robustos, desde prototipos en Figma hasta implementar APIs seguras e interfaces responsivas.",
                 "journey-title": "MI TRAYECTORIA HASTA AQUÍ.",
                 "j1-title": "Fin de la Carrera",
                 "j1-desc": "Finalicé la carrera de ADS y sigo practicando todos los días. Apoyo técnico cotidiano en hardware, software y sistemas en el ámbito escolar.",
